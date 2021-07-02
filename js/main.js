@@ -1,0 +1,2 @@
+
+$('.account-forms-container').hide();

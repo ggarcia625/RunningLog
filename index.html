@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="css/running-logs.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <title>Running Logs</title>
+</head>
+<body>
+    <header id='headerNavigation'>
+        <div>
+            <i id='home' class="fa fa-home" aria-hidden="true"></i>
+            <i id='dashboard'>dashboard</i>
+            <i id='profile' class="fa fa-user" aria-hidden="true"></i>
+            <i id='addlog' class="fa fa-plus" aria-hidden="true"></i>
+        </div>
+    </header>
+    <div id='container'>
+        <div class='weeklySummary'>
+            <div class='weeklyHeader'>Weekly Summary</div> 
+        </div>
+        <div id='calendar'>
+            <div class='calendarheader'>
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+                <div class ='date'>
+                    <h1 class='yearheader'></h1>
+                    <h2 class='monthheader'></h2>
+                    <p></p>
+                </div>
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </div>
+            <div class='daysOfTheWeek'>
+                <span class='dayName'>SUN</span>
+                <span class='dayName'>MON</span>
+                <span class='dayName'>TUE</span>
+                <span class='dayName'>WED</span>
+                <span class='dayName'>THU</span>
+                <span class='dayName'>FRI</span>
+                <span class='dayName'>SAT</span>
+            </div>
+            <div class='dayContainer'></div>
+        </div>
+    </div>
+    <div id='logcontainer'>
+        <form id="logForm">
+            <label for="title">Title:</label>
+                <input id="title"></input>
+            <br><label for="date">Date:</label>
+                <input id="date" type="text" autocomplete="off "></input>
+            <br><label for="timeHH">Time: hh:</label>
+                <input id="timeHH"></input>
+            <label for="timeMM">mm:</label>
+                <input id="timeMM"></input>
+            <label for="timeSS">ss:</label>
+                <input id="timeSS"></input>
+            <br><label for="distance">Distance:</label>
+                <span>
+                    <input id="distance"></input>
+                    <select name="distance" id='unitofdistance'>
+                        <option value='miles'>miles</option>
+                        <option value='kilometers'>km</option>
+                    </select>
+                </span>
+            <br><label for="pace">Pace:</label>
+                <span id="pace"></span>
+            <br><label for="feel">Feel:</label>
+            <div id="feel">
+                
+                <span class='feelbox' id='red'>
+                    <a href="#" data-toggle="tooltip" title="Felt Bad"></a>
+                        <input id='bad' type='radio' name='feel' value='bad'></input>
+                    </a>
+                </span>
+
+                <span class='feelbox' id='orange'>
+                    <input id='notgood' type='radio' name='feel' value='notgood'></input>
+                </span class='feelbox'>
+
+                <span class='feelbox' id='yellow'>
+                    <input id='okay'type='radio' name='feel' value='okay'></input>
+                </span>
+
+                <span class='feelbox' id='blue'>
+                    <input id='good' type='radio' name='feel' value='good'></input>
+                </span>
+
+                <span class='feelbox' id='green'>
+                    <input id='great' type='radio' name='feel' value='great'></input>
+                </span>
+            </div>
+            <br><label for="notes">Notes:</label>
+                <input id="notes"></input>
+            <br><button id="buttonLogSubmit" type="submit" form="logForm">Submit</button>
+        </form>
+    </div>
+
+    <!-- <section class="account-forms-container container">
+
+        Login form
+        <form action="#" id="login-form" class="account-form hidden" method="post">
+          <h4>Login</h4>
+          <div class="login-input">
+            <label for="login-username">username</label>
+            <input id="login-username" autocomplete="current-username">
+          </div>
+          <div class="login-input">
+            <label for="login-password">password</label>
+            <input id="login-password" type="password" autocomplete="current-password">
+          </div>
+          <button type="submit">login</button>
+          <hr>
+        </form> -->
+      
+        <!-- Signup form -->
+        <!-- <form
+            action="#"
+            id="signup-form"
+            class="account-form hidden"
+            method="post">
+          <h4>Create Account</h4>
+          <div class="login-input">
+            <label for="signup-name">name</label>
+            <input id="signup-name" autocapitalize="words">
+          </div>
+          <div class="login-input">
+            <label for="signup-username">username</label>
+            <input id="signup-username" autocomplete="new-username">
+          </div>
+          <div class="login-input">
+            <label for="signup-password">password</label>
+            <input id="signup-password" autocomplete="new-password" type="password">
+          </div>
+          <button type="submit">create account</button>
+        </form> -->
+      <!-- </section> -->
+    <script src="http://unpkg.com/jquery"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/1.27.0/luxon.min.js" integrity="sha512-cQXElo4AdS11Wtr5GFBmliue0OBZIhJjcSOSmF3RASBNfJMrkhF/F5JknHUm9klwHLLVG5+oiV6INy/yjgYPoA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="http://unpkg.com/axios/dist/axios.js"></script>
+    <script src="js/running-logs.js"></script>
+    <!-- <script src="js/user.js"></script> -->
+    <!-- <script src="js/main.js"></script> -->
+    <script>
+        $( function() {
+            $( "#date" ).datepicker();
+        } );
+    </script>
+</body>
+</html>
