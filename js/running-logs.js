@@ -12,6 +12,7 @@ let prevMonthDay = new Date(date.getFullYear(), currentMonth, 0).getDate();
 let lastDayIndex = new Date(date.getFullYear(), currentMonth + 1, 0).getDay();
 let nextMonthDays = 6 - lastDayIndex;
 let monthRealNumber = currentMonth + 1;
+// comment
 
 function changeMonth() {
     firstOfMonthDate.setDate(1);
